@@ -41,15 +41,16 @@ class RegisterActivity : AppCompatActivity() {
         else if(password1 == password2){//so long as the passwords match
             //creates that user with the password
             FirebaseAuth.getInstance().createUserWithEmailAndPassword(email, password1).addOnCompleteListener{
-                if(!it.isSuccessful){
+                if(it.isSuccessful){
                     Log.d("RegisterActivity", "Successfully Created a user")
                     val intent = Intent(this, LoggedInActivity::class.java)
                     startActivity(intent)//starts the logged in activity
                     return@addOnCompleteListener
 
+                }else{
+                    Log.d("RegisterActivity", "Failed to create a user")
+                    Toast.makeText(this, "Failed to Create user", Toast.LENGTH_LONG).show()
                 }
-            }.addOnFailureListener{//if it fails to create a user, toasts that it failed
-                Toast.makeText(this, "${it.message}", Toast.LENGTH_LONG).show()
             }
         }
         else{//shows a toast prompting to correct the passwords
