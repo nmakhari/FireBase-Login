@@ -30,17 +30,17 @@ class LoginActivity : AppCompatActivity() {
 
         val password = password_editText_loginActivity.text.toString()
 
-        FirebaseAuth.getInstance().signInWithEmailAndPassword(email, password).addOnCompleteListener{
-            if(!it.isSuccessful){
+        FirebaseAuth.getInstance().signInWithEmailAndPassword(email, password).addOnCompleteListener(this){
+            if(it.isSuccessful){
                 Log.d("LoginActivity", "Succesfully logged the user in")
 
                 val intent = Intent(this, LoggedInActivity::class.java)
                 startActivity(intent)//starts the logged in activity
-                return@addOnCompleteListener
 
+
+            }else{
+                Toast.makeText(this, "Failed to Login", Toast.LENGTH_SHORT).show()
             }
-        }.addOnFailureListener(){
-            Toast.makeText(this, "Failed to Login", Toast.LENGTH_SHORT).show()
         }
     }
 }
