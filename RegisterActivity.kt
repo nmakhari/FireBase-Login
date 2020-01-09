@@ -45,12 +45,12 @@ class RegisterActivity : AppCompatActivity() {
                     Log.d("RegisterActivity", "Successfully Created a user")
                     val intent = Intent(this, LoggedInActivity::class.java)
                     startActivity(intent)//starts the logged in activity
-                    return@addOnCompleteListener
+                    //return@addOnCompleteListener
 
-                }else{
-                    Log.d("RegisterActivity", "Failed to create a user")
-                    Toast.makeText(this, "Failed to Create user", Toast.LENGTH_LONG).show()
                 }
+            }.addOnFailureListener(){
+                Log.d("RegisterActivity", "Failed to create a user")
+                Toast.makeText(this, "Failed to Create user", Toast.LENGTH_LONG).show()
             }
         }
         else{//shows a toast prompting to correct the passwords

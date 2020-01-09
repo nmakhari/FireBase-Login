@@ -31,8 +31,9 @@ class LoginActivity : AppCompatActivity() {
         val password = password_editText_loginActivity.text.toString()
 
         FirebaseAuth.getInstance().signInWithEmailAndPassword(email, password).addOnCompleteListener(this){
+            Log.d("LoginActivity", "Button Clicked")
             if(it.isSuccessful){
-                Log.d("LoginActivity", "Succesfully logged the user in")
+                Log.d("LoginActivity", "Successfully logged the user in")
 
                 val intent = Intent(this, LoggedInActivity::class.java)
                 startActivity(intent)//starts the logged in activity
